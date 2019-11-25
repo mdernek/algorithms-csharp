@@ -1,4 +1,3 @@
-using System;
 using Algorithms.ArraySamples;
 using Xunit;
 

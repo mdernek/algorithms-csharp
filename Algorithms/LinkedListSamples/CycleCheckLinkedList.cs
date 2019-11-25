@@ -1,19 +1,19 @@
-using System.Collections.Generic;
-
 namespace Algorithms.LinkedListSamples
 {
-    public class CycleCheckLinkedList<T>: LinkedList<T>
+    public interface ICycledLinkedList<T>
     {
-        public CycleCheckLinkedList(){}
-        public CycleCheckLinkedList(IEnumerable<T> list): base(list) {}
+        bool IsCycled();
+    }
 
+    public partial class LinkedList<T>: ICycledLinkedList<T>
+    {
         public bool IsCycled(){
-            Node<T> slow = base.GetNode();
-            Node<T> fast = base.GetNode();
+            Node<T> slow = this.GetNode();
+            Node<T> fast = this.GetNode();
 
-            while(slow != null && fast != null && fast.next != null){
-                slow = slow.next;
-                fast = fast.next.next;
+            while(slow != null && fast != null && fast.Next != null){
+                slow = slow.Next;
+                fast = fast.Next.Next;
 
                 if(slow == fast){
                     return true;

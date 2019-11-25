@@ -2,7 +2,15 @@ using System.Collections.Generic;
 
 namespace Algorithms.LinkedListSamples
 {
-    public class LinkedList<T>
+    public interface ILinkedList<T>
+    {
+        void Add(T data);
+        void Add(Node<T> node);
+        Node<T> GetNode();
+        IEnumerable<T> GetList();
+    }
+
+    public partial class LinkedList<T>: ILinkedList<T>
     {
         Node<T> head = null;
         Node<T> tail = null;
@@ -25,7 +33,8 @@ namespace Algorithms.LinkedListSamples
 
         public void Add(Node<T> node){
             if(tail != null){
-                tail.next = node;
+                node.Previous = tail;
+                tail.Next = node;
             }
 
             if(head is null){
@@ -35,16 +44,16 @@ namespace Algorithms.LinkedListSamples
             tail = node;
         }
 
-        public virtual Node<T> GetNode(){
+        public Node<T> GetNode(){
             return head;
         }
 
         public IEnumerable<T> GetList(){
             Node<T> node = GetNode();
 
-            while(node != null && node.next != null){
-                T data = node.data;
-                node = node.next;
+            while(node != null && node.Next != null){
+                T data = node.Data;
+                node = node.Next;
                 yield return data;
             }
         }

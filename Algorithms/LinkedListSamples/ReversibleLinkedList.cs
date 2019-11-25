@@ -1,26 +1,27 @@
-using System.Collections.Generic;
 
 namespace Algorithms.LinkedListSamples
 {
-    public class ReversibleLinkedList<T>: LinkedList<T>
+    public interface IReversibleLinkedList<T>
     {
-        public ReversibleLinkedList(IEnumerable<T> list): base(list) {}
-
+        void reverse();
+    }
+    public partial class LinkedList<T>: IReversibleLinkedList<T>
+    {
         public void reverse(){
-            Node<T> head = base.GetNode();
+            Node<T> head = this.GetNode();
             
             if(head is null){
                 return;
             }
 
             Node<T> tail = head;
-            tail.next = null;
-            head = head.next;
+            tail.Next = null;
+            head = head.Next;
             Node<T> reversedNode = tail;
 
-            while(head != null && head.next != null){
-                Node<T> temp = head.next;
-                temp.next = reversedNode;
+            while(head != null && head.Next != null){
+                Node<T> temp = head.Next;
+                temp.Next = reversedNode;
                 reversedNode = temp;
             }
         }
