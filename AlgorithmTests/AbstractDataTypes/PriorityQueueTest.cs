@@ -1,7 +1,7 @@
 using Xunit;
 using Algorithms.AbstractDataTypes;
 
-namespace AlgorithmTests
+namespace AlgorithmTests.AbstractDataTypes
 {
     public class PriorityQueueTest
     {
