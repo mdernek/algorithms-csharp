@@ -62,7 +62,7 @@ namespace AlgorithmTests.AbstractDataTypes
         public void CreatePriorityQueueWithNoData(){
             IPriorityQueue<int> priorityQueue = new PriorityQueue<int>();
             
-            Assert.Equal(0, priorityQueue.Dequeue().Data);
+            Assert.Null(priorityQueue.Dequeue());
         }
     }
 }
