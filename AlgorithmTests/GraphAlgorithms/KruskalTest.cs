@@ -10,6 +10,11 @@ namespace AlgorithmTests.GraphAlgorithms
         [Fact]
         public void KruskalWithGraph(){
             char[] vertices = new char[] {'a','b','c','d','e','f'};
+            List<(int, char, char)> actualResult = new List<(int, char, char)>();
+            actualResult.Add((1, 'a', 'b'));
+            actualResult.Add((1, 'c', 'd'));
+            actualResult.Add((2, 'b', 'd'));
+
             Kruskal<char> kruskal = new Kruskal<char>(vertices);
             kruskal.AddEdges(1, ('a', 'b'));
             kruskal.AddEdges(5, ('a', 'c'));
@@ -20,9 +25,12 @@ namespace AlgorithmTests.GraphAlgorithms
 
             List<QueueItem<(char u, char v)>> result = kruskal.ExecuteKruskal();
 
-            Assert.Equal((1, 'a', 'b'), (result[0].Priority, result[0].Data.u, result[0].Data.v));
-            Assert.Equal((1, 'c', 'd'), (result[1].Priority, result[1].Data.u, result[1].Data.v));
-            Assert.Equal((2, 'b', 'd'), (result[2].Priority, result[2].Data.u, result[2].Data.v));
+            Assert.Equal(3, result.Count);
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                Assert.Equal(actualResult[i], (result[i].Priority, result[i].Data.u, result[i].Data.v));
+            }
         }
 
         [Fact]
