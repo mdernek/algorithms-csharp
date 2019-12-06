@@ -5,12 +5,23 @@ namespace Algorithms.AbstractDataTypes
     public interface IPriorityQueue<T>
     {
         void Enqueue(int priority, T data);
-        T Dequeue();
+        QueueItem<T> Dequeue();
         int Count{ get; }
     }
-    public partial class PriorityQueue<T> : IPriorityQueue<T>
+
+    public class QueueItem<T> {
+        public int Priority {get; private set;}
+        public T Data { get; private set; }
+
+        public QueueItem(int priority, T data){
+            this.Priority = priority;
+            this.Data = data;
+        }
+    }
+        
+    public class PriorityQueue<T> : IPriorityQueue<T>
     {
-        List<Node> _priorityQueue;
+        List<QueueItem<T>> _priorityQueue;
         public int Count { 
             get {
                 return this._priorityQueue.Count;
@@ -18,16 +29,16 @@ namespace Algorithms.AbstractDataTypes
         }
 
         public PriorityQueue(){
-            _priorityQueue = new List<Node>();
+            _priorityQueue = new List<QueueItem<T>>();
         }
 
-        public T Dequeue()
+        public QueueItem<T> Dequeue()
         {
             if(Count < 1){
-                return default(T);
+                return default(QueueItem<T>);
             }
 
-            T data= this._priorityQueue[0].Data;
+            QueueItem<T> node = this._priorityQueue[0];
             this.swap(0, Count-1);
             this._priorityQueue.RemoveAt(Count-1);
 
@@ -35,12 +46,12 @@ namespace Algorithms.AbstractDataTypes
                 Heapify(Count, i);
             }
 
-            return data;
+            return node;
         }
 
         public void Enqueue(int priority, T data)
         {
-            Node node = new Node(priority, data);
+            QueueItem<T> node = new QueueItem<T>(priority, data);
             this._priorityQueue.Add(node);
 
             if(Count > 1){
@@ -70,21 +81,9 @@ namespace Algorithms.AbstractDataTypes
         }
 
         private void swap(int i, int j){
-            Node temp = this._priorityQueue[i];
+            QueueItem<T> temp = this._priorityQueue[i];
             this._priorityQueue[i] = this._priorityQueue[j];
             this._priorityQueue[j] = temp;
-        }
-    }
-
-    public partial class PriorityQueue<T> {
-        class Node {
-            public int Priority {get; private set;}
-            public T Data { get; private set; }
-
-            public Node(int priority, T data){
-                this.Priority = priority;
-                this.Data = data;
-            }
         }
     }
 }

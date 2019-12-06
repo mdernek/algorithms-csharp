@@ -29,13 +29,13 @@ namespace AlgorithmTests.AbstractDataTypes
             priorityQueue.Enqueue(6, 6);
             priorityQueue.Enqueue(7, 7);
             
-            Assert.Equal(1, priorityQueue.Dequeue());
-            Assert.Equal(2, priorityQueue.Dequeue());
-            Assert.Equal(3, priorityQueue.Dequeue());
-            Assert.Equal(4, priorityQueue.Dequeue());
-            Assert.Equal(5, priorityQueue.Dequeue());
-            Assert.Equal(6, priorityQueue.Dequeue());
-            Assert.Equal(7, priorityQueue.Dequeue());
+            Assert.Equal(1, priorityQueue.Dequeue().Data);
+            Assert.Equal(2, priorityQueue.Dequeue().Data);
+            Assert.Equal(3, priorityQueue.Dequeue().Data);
+            Assert.Equal(4, priorityQueue.Dequeue().Data);
+            Assert.Equal(5, priorityQueue.Dequeue().Data);
+            Assert.Equal(6, priorityQueue.Dequeue().Data);
+            Assert.Equal(7, priorityQueue.Dequeue().Data);
         }
 
         [Fact]
@@ -49,20 +49,20 @@ namespace AlgorithmTests.AbstractDataTypes
             priorityQueue.Enqueue(6, 3);
             priorityQueue.Enqueue(7, 1);
             
-            Assert.Equal(6, priorityQueue.Dequeue());
-            Assert.Equal(12, priorityQueue.Dequeue());
-            Assert.Equal(4, priorityQueue.Dequeue());
-            Assert.Equal(8, priorityQueue.Dequeue());
-            Assert.Equal(7, priorityQueue.Dequeue());
-            Assert.Equal(3, priorityQueue.Dequeue());
-            Assert.Equal(1, priorityQueue.Dequeue());
+            Assert.Equal(6, priorityQueue.Dequeue().Data);
+            Assert.Equal(12, priorityQueue.Dequeue().Data);
+            Assert.Equal(4, priorityQueue.Dequeue().Data);
+            Assert.Equal(8, priorityQueue.Dequeue().Data);
+            Assert.Equal(7, priorityQueue.Dequeue().Data);
+            Assert.Equal(3, priorityQueue.Dequeue().Data);
+            Assert.Equal(1, priorityQueue.Dequeue().Data);
         }
 
         [Fact]
         public void CreatePriorityQueueWithNoData(){
             IPriorityQueue<int> priorityQueue = new PriorityQueue<int>();
             
-            Assert.Equal(0, priorityQueue.Dequeue());
+            Assert.Equal(0, priorityQueue.Dequeue().Data);
         }
     }
 }
