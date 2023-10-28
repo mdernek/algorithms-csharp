@@ -50,7 +50,7 @@ namespace Algorithms.Sorting
             }
 
             if(i>mid){
-                while(j<=mid){
+                while(j<=end){
                     _clonedArr[k] = arr[j];
                     j++;
                     k++;
